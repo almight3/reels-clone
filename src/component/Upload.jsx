@@ -57,6 +57,7 @@ function Upload({ userData }) {
             getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
               let obj = {
                 likes: [],
+                comments:[],
                 postId: uid,
                 postUrl: downloadURL,
                 profileName: userData.name,
@@ -86,7 +87,7 @@ function Upload({ userData }) {
     }
    
   return (
-    <div className='upload-btn'>
+    <div className='upload-btn' style={{margin:"1rem"}}>
     { 
       error!=null ?      <Alert severity="error">{error}</Alert>:<Button variant="outlined" color="secondary" component="label" startIcon={<MovieIcon />} style={{marginTop:'0.5%'}}>
          <input type="file" accept="video/*" style={{ display: 'none' }} onChange={(e)=>onChangehandler(e.target.files [0])} />Upload video

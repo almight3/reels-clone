@@ -80,11 +80,11 @@ return (
                            </video>
                         </div>
                         <div className="modal-comment">
-                              <Card className="card1" style={{padding:'1rem'}}>
+                              <Card className="card1" style={{paddingLeft:'1rem'}}>
                                    <Comments postData={post} />
                               </Card>
-                             <Card>
-                             <Typography style={{padding:'0.4rem'}}>{post.likes.length==0?'Liked by nobody':`Liked by ${post.likes.length} users`}</Typography>
+                             <Card className="card2">
+                             <Typography style={{paddingTop:'0.4rem 0'}}>{post.likes.length==0?'Liked by nobody':`Liked by ${post.likes.length} users`}</Typography>
                             <div>
                                 <LikeModal post={post} userData={userData} style={{display:'flex',alignItems:'center',justifyContent:'center'}}/>
                                 <AddComments post={post} userData style={{display:'flex',alignItems:'center',justifyContent:'center'}}/>

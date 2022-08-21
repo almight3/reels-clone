@@ -26,8 +26,6 @@ function Feeds() {
   }
   return (
    <div className="feed-container">
-    <h1>Reels Feed</h1>
-    <button onClick={logOutHandler}>logout</button>
     <Upload userData={userData} />
     <Posts userData={userData}/>
    </div>

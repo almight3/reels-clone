@@ -16,11 +16,10 @@ function AddComments({post,userData}) {
         userName:post.profileName,
         cid:cid
     }
-    await setDoc(doc(db,"comment"),commentObj)
-    await  updateDoc(doc(db,"posts",cid),{
-       comments:arrayUnion(cid)
+    await setDoc(doc(db,"comments",cid),commentObj)
+    await  updateDoc(doc(db,"posts",post.postId),{
+       comments:[...post.comments,cid]
     })
-    
     setText('')
     console.log("check")
         

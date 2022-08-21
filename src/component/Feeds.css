@@ -63,17 +63,27 @@
 }
 .modal-video{
  display: flex;
- height:80vh ;
  width: 50%;
+ height: 100%;
+ display: flex;
  align-items: center;
- justify-content: center;
- background-color: black;
+ justify-content: space-around;
+}
+.video-modal video{
+    height: 85vh;
 }
 
-.modal-comments{
+.comment-modal{
     width: 50%;
     height: 100%;
 }
 .card1{
-    height: 70vh;
+    height:70vh;
+    width: 50%;
+    padding: 0%
+}
+.card2{
+    height: 30%;
+    width: 100%;
+    padding: 0%
 }

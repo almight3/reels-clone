@@ -6,20 +6,26 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { async } from '@firebase/util';
 
 
-function Comments({post}) {
-  const [comments,setComments] = useState(null)
+function Comments({postData}) {
+  const [comments,setComments] = useState(null);
   
-//   useEffect(()=>{
-//   async function fetchComment(post){
-//   let arr = []
-//   for(let i = 0;i<post.comments.length;i++){
-//   let docRef = doc(db,"comment",post.comments[i]);
-//   let docSnap = await getDoc(docRef) 
-//   arr.push(docSnap.doc())
-//   console.log(docSnap.doc())
-//   }}
-//   fetchComment(post)   
-// },[post])
+  useEffect(()=>{
+  let commentsArray = [];
+  setComments('')
+  const fetchComment = async(postData)=>{
+  console.log('Comments',comments)
+  for(let i = 0 ;i<postData.comments.length;i++){
+      let docRef = doc(db,"comments",postData.comments[i]);
+      let docSnap = await getDoc(docRef);
+      console.log("docData",docSnap.data());
+      commentsArray.push(docSnap.data());
+    }
+  }
+  fetchComment(postData)
+  console.log("")
+  setComments(commentsArray)
+  
+},[postData])
   
   
   return (
