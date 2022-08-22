@@ -7,6 +7,7 @@ import { collection, doc, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { db } from '../firebase';
 import Posts from './Posts'
 import "./Feeds.css"
+import NavBar from "./NavBar"
 function Feeds() {
   const {logout,user} = useContext(AuthContext)
   const [userData,setUserData] = useState([]);
@@ -26,6 +27,7 @@ function Feeds() {
   }
   return (
    <div className="feed-container">
+    <NavBar userData={userData} />
     <Upload userData={userData} />
     <Posts userData={userData}/>
    </div>

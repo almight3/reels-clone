@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import "./Feeds.css"
 
-function Videos({postUrl}) {
+function Videos({postUrl,id}) {
     const handleClick = (e) => {
         e.preventDefault();
         e.target.muted = !e.target.muted
@@ -15,7 +15,7 @@ function Videos({postUrl}) {
         }
     }
   return (
-    <video src={postUrl} onEnded={handleScroll}  onClick={handleClick} muted="muted" controls></video>
+    <video src={postUrl} onEnded={handleScroll}  onClick={handleClick} muted="muted"  id={id}></video>
   )
 }
 

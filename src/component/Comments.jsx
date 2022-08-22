@@ -12,6 +12,7 @@ function Comments({postData}) {
   useEffect(()=>{
   let commentsArray = [];
   setComments('')
+  console.table(postData)
   const fetchComment = async(postData)=>{
   console.log('Comments',comments)
   for(let i = 0 ;i<postData.comments.length;i++){

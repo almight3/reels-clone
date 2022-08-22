@@ -14,7 +14,7 @@ import Comments from './Comments'
 import AddComments from "./AddComments"
 import LikeModal from "./LikeModal"
 import Typography from '@mui/material/Typography';
-
+import CloseSharpIcon from '@mui/icons-material/CloseSharp';
 
 
 
@@ -38,6 +38,27 @@ useEffect(()=>{
 },[])
 console.log("posts",posts)
 
+const callback = (entries) => {
+    entries.forEach((entry)=>{
+        let element = entry.target.childNodes[0]
+        console.log(element)
+        element.play().then(()=>{
+            if(!element.paused && !entry.isIntersecting){
+                element.pause()
+            }
+        })
+    })
+}
+let observer = new IntersectionObserver(callback, {threshold:0.6});
+useEffect(()=>{
+    const elements = document.querySelectorAll(".videos")
+    elements.forEach((element)=>{
+        observer.observe(element)
+    })
+    return ()=>{
+        observer.disconnect();
+    }
+},[posts])
 // modal opne and close handler
 const handleClickOpen = (id) => {
     setOpen(id);
@@ -45,22 +66,23 @@ const handleClickOpen = (id) => {
 
   const handleClose = () => {
     setOpen(null);
-  };
+};
 
 
 return (
-    <div className="video-container">
+    <div>
          {
          posts== null || userData==null ? <CircularProgress /> :
-         <div className="videos">
-            {posts.map((post)=>(
+         <div className="video-container">
+            {
+            posts.map((post)=>(
             <div className="videos" >
-                <Videos postUrl={post.postUrl} />
+                <Videos postUrl={post.postUrl} id={post.postId} />
                 <div className="videos-info">
                   <div className="avatar_container">
                   <Avatar alt="Remy Sharp" src={post.profileUrl}  sx={{ margin: "0.5rem" }}/>
                 <p style={{ color: "white", fontWeight: "bold" }}>{post.profileName}</p>
-                 </div>
+                </div>
                  <div className="post-like">
                   <Like post={post} userData={userData}/>
                   <CommentIcon sx={{marginTop:"0.5rem" ,color:"white"}} onClick={()=>handleClickOpen(post.postId)}/>
@@ -73,6 +95,9 @@ return (
                         fullWidth ={true}
                         maxWidth = 'md'
                     >
+                        
+                      
+                     <CloseSharpIcon onClick={handleClose} sx={{position:"fixed",top:"20px",right:"200px",color:"white",cursor: "pointer"}}/>
                      <div className="modal-container">
                         <div>
                            <video className="modal-video" controls  >
