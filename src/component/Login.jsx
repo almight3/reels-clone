@@ -18,6 +18,7 @@ const [password,setPassword] = useState();
 const [error,setError] = useState('');
 const [loading,setLoading] = useState(false);
 const {login} = useContext(AuthContext)
+const [guest,setGuest] = useState()
 const navigate = useNavigate()
 const onClickHandler = async()=>{
   try{
@@ -37,6 +38,10 @@ const onClickHandler = async()=>{
   }
 }
 
+const handelGuestLogin = ()=>{
+  setEmail("Priyanshu@mail.com")
+  setPassword("123456")
+}
   return (
     <div className="signup-wrapper">
        <div className='signup-container'>
@@ -45,8 +50,8 @@ const onClickHandler = async()=>{
           <img src={InstaLogo}/>
        </div>  
       <CardContent>
-      <TextField id="outlined-basic" label="Email" variant="outlined" fullWidth={true}  margin="dense" type="email" onChange={(e)=>setEmail(e.target.value)} />
-      <TextField id="outlined-basic" label="Password" variant="outlined" fullWidth={true} margin="dense" type="password" onChange={(e)=>setPassword(e.target.value)}/>
+      <TextField id="outlined-basic" label="Email" variant="outlined" fullWidth={true}  margin="dense" type="email" onChange={(e)=>setEmail(e.target.value)} value={email} />
+      <TextField id="outlined-basic" label="Password" variant="outlined" fullWidth={true} margin="dense" type="password"  onChange={(e)=>setPassword(e.target.value)} value={password}/>
       </CardContent>
       <CardContent>
         <CardActions>
@@ -54,6 +59,8 @@ const onClickHandler = async()=>{
         </CardActions>
         <Typography gutterBottom variant="h6" component="div" align="center" sx={{fontWeight:500,fontSize:'0.8rem',margin:'1rem 0 0 0'}}>
        <Link to="/login" style={{textDecoration:"none",color:"black" }}> Forget Password ?</Link>
+      </Typography>
+      <Typography gutterBottom variant="h6" component="div" align="center" sx={{fontWeight:500,fontSize:'0.8rem',margin:'1rem 0 0 0'}} > <h5 onClick={handelGuestLogin} style={{cursor: "pointer"}}>guest login</h5> 
       </Typography>
       {error!='' && <Typography gutterBottom variant="h6" component="div" align="center" color="red" sx={{fontWeight:500,fontSize:'0.8rem',margin:'0.5rem 2rem'}}>
        {error}
